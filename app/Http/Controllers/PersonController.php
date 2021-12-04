@@ -20,10 +20,9 @@ class PersonController extends Controller
     public function createPerson(Request $request){
         $id = 2;
         $record = new Person;
-        $record->person_name = $request->name;
-        $record->person_age =$request->age;
-        $record->email = $request->email;
-        $record->password = Hash::make($request->password);
+        $record->person_name = $request->pname;
+        $record->email = $request->pemail;
+        $record->password = Hash::make($request->ppw);
         $record->auth_id = $id;
         $record->save();
         return response()->json([
@@ -31,6 +30,7 @@ class PersonController extends Controller
             'message' => 'Successfully created...'
         ]);
     }
+
     //PERSON LOGIN API
     public function personLogin(Request $request){
         $credentials = $request->only('email','password');
