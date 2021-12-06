@@ -39,7 +39,8 @@ class TaskController extends Controller
         ->join('persons','persons.person_id','=','tasks.person_id')
         ->select(
             'persons.person_name as name',
-            'task_name as task',
+            'task_id',
+            'task_name',
             'task_description as description',
             DB::raw('DATE_FORMAT(created_at, "%a %d %M %Y %r" ) as date')
         )
@@ -86,5 +87,24 @@ class TaskController extends Controller
         $user = Auth::check();
 
         return $user;
+    }
+
+    //VIEW SPECIFIC TASK
+    public function view($id){
+
+        $tasks = DB::table('tasks')
+        ->join('persons','persons.person_id','=','tasks.person_id')
+        ->select(
+            'persons.person_name as name',
+            'task_id',
+            'task_name',
+            'task_description as description',
+            DB::raw('DATE_FORMAT(created_at, "%a %d %M %Y %r" ) as date')
+        )
+        ->where('tasks.task_id','=',$id)
+        ->get();
+
+        return $tasks;
+
     }
 }

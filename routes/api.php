@@ -33,6 +33,8 @@ Route::group([
         Route::delete('/deletetask/{id}',[TaskController::class,'deleteTask']);
         //CHECK AUTH USR
         Route::post('/check',[TaskController::class,'check']);
+        //VIEW SPECIFIC TASK
+        Route::get('/view/{id}', [TaskController::class,'view']);
 
 
 });

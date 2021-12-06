@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Person;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PersonController extends Controller
 {
@@ -50,4 +51,5 @@ class PersonController extends Controller
             // 'user' => auth('person')->user()
         ]);
     }
+
 }
