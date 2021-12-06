@@ -15,12 +15,15 @@ Route::group([
         //ADMINS
 
         Route::post('/adminlogin',[AdminController::class, 'adminLogin']);
-        Route::post('/createdadmin',[AdminController::class, 'createAdmin']);
+        Route::post('/createdadmin',[AdminController::class, 'adminCreate']);
+        Route::get('/totalPerson',[AdminController::class, 'totalPersons']);
+        Route::get('/totalTask',[AdminController::class, 'totalTask']);
 
         //PERSONS
 
         Route::post('/personlogin',[PersonController::class, 'personLogin']);
         Route::post('/createperson',[PersonController::class, 'createPerson']);
+        Route::post('/logout',[PersonController::class, 'logout']);
 
         //////////-----TASK----//////////
         //CREATE

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -12,7 +13,9 @@ class AdminController extends Controller
     public function __construct(){
         $this->middleware('auth:admin',['except' =>[
             "adminLogin",
-            "createAdmin",
+            "adminCreate",
+            "totalPersons",
+            "totalTask",
         ]]);
     }
     //CREATE ADMIN
@@ -46,5 +49,27 @@ class AdminController extends Controller
             'expires_in' => auth()->factory()->getTTL()*60,
             // 'user' => auth('admin')->user()
         ]);
+    }
+    //TOTAL PERSONS
+    public function totalPersons(){
+
+        $persons = DB::table('persons')
+            ->select(
+                DB::raw("COUNT(person_id) as persons")
+                )
+            ->get();
+
+     return $persons;
+ }
+    //TOTAL TASK
+    public function totalTask(){
+
+        $tasks = DB::table('tasks')
+                ->select(
+                    DB::raw('COUNT(task_id) as totaltask'),
+                    )
+                ->get();
+
+         return $tasks;
     }
 }

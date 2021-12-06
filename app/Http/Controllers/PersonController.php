@@ -52,4 +52,11 @@ class PersonController extends Controller
         ]);
     }
 
+    //LOGOUT AUTH PERSON
+    // public function logout(){
+
+    //     auth('person')->logout();
+    //     return response()->json(['message' => 'Successfully signed out']);
+
+    // }
 }
